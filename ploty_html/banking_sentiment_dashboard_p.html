@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Banking Complaints – Sentiment Insights Dashboard</title>
+<style>
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 40px;
+  background-color: #fdfefe;
+  color: #2c3e50;
+}
+h1, h2, h3 {
+  color: #2c3e50;
+}
+.section {
+  margin-bottom: 60px;
+}
+iframe {
+  width: 100%;
+  height: 600px;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.highlight {
+  background-color: #ecf0f1;
+  padding: 12px 16px;
+  border-left: 6px solid #3498db;
+  margin-top: 10px;
+  font-size: 0.95em;
+}
+</style>
+</head>
+<body>
+
+<h1>Banking Complaints – Sentiment Insights Dashboard</h1>
+
+<div class="section">
+<h2>Overview</h2>
+<p>This dashboard presents a comprehensive analysis of customer complaints submitted to banks in 2023. Using Natural Language Processing and sentiment analysis, we uncover patterns across products, regions, and time to support strategic decisions.</p>
+</div>
+
+<div class="section">
+<h2>1. Overall Sentiment Distribution</h2>
+<iframe src="overall_sentiment_pie_p.html"></iframe>
+<div class="highlight">Quick snapshot of how customers feel across all complaints.</div>
+</div>
+
+<div class="section">
+<h2>2. Sentiment Distribution by Banking Product</h2>
+<iframe src="sentiment_by_product_p.html"></iframe>
+<div class="highlight">Shows how sentiment varies across different banking products.</div>
+</div>
+
+<div class="section">
+<h2>3. Sentiment Ratio by Product</h2>
+<iframe src="sentiment_ratio_by_product_p.html"></iframe>
+<div class="highlight">Highlights the percentage of positive vs. negative sentiment per product.</div>
+</div>
+
+<div class="section">
+<h2>4. Complaint Volume by Product (Treemap)</h2>
+<iframe src="complaint_treemap_by_product_p.html"></iframe>
+<div class="highlight">Visual hierarchy of complaint volume across products.</div>
+</div>
+
+<div class="section">
+<h2>5. Product Risk Bubble Chart</h2>
+<iframe src="product_risk_bubble_p.html"></iframe>
+<div class="highlight">Combines volume and negativity to identify high-risk products.</div>
+</div>
+
+<div class="section">
+<h2>6. Sentiment Distribution by State</h2>
+<iframe src="sentiment_by_state_p.html"></iframe>
+<div class="highlight">Shows how sentiment varies geographically across the U.S.</div>
+</div>
+
+<div class="section">
+<h2>7. Top 10 States by Negative Sentiment Rate</h2>
+<iframe src="top_negative_states_p.html"></iframe>
+<div class="highlight">Identifies regions with the highest proportion of negative feedback.</div>
+</div>
+
+<div class="section">
+<h2>8. Monthly Complaint Volume</h2>
+<iframe src="monthly_complaint_volume_p.html"></iframe>
+<div class="highlight">Tracks how complaint volume changes over time.</div>
+</div>
+
+<div class="section">
+<h2>9. Sentiment Trends Over Time</h2>
+<iframe src="sentiment_trends_over_time_p.html"></iframe>
+<div class="highlight">Reveals how customer sentiment evolves month by month.</div>
+</div>
+
+<div class="section">
+<h2>Business Insights</h2>
+<ul>
+  <li>Products like <strong>Checking accounts</strong> and <strong>Credit cards</strong> show high complaint volume and negative sentiment.</li>
+  <li>Some products (e.g. <strong>Student loans</strong>) have more positive than negative feedback, indicating good service or resolution.</li>
+  <li>States like <strong>California</strong> and <strong>Florida</strong> show elevated negativity, suggesting regional service issues.</li>
+  <li>Complaint volume spikes in certain months may reflect policy changes or seasonal demand.</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>Author</h2>
+<p><strong>Carllos Watts-Nogueira</strong> – Data Scientist focused on transforming raw feedback into actionable insights.</p>
+<ul>
+  <li>GitHub: <a href="https://github.com/cwattsnogueira" target="_blank">github.com/cwattsnogueira</a></li>
+  <li>LinkedIn: <a href="https://www.linkedin.com/in/carlloswattsnogueira" target="_blank">linkedin.com/in/carlloswattsnogueira</a></li>
+</ul>
+</div>
+
+</body>
+</html>
