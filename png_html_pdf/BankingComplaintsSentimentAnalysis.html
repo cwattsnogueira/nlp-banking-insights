@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Banking Complaints – Sentiment Insights Report</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 40px;
+            background-color: #fdfefe;
+            color: #2c3e50;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        img {
+          display: block;
+          width: 100%;
+          max-width: 1000px;
+          height: auto;
+          margin: 30px auto;
+          border-radius: 8px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+          object-fit: contain;
+        }
+        .section {
+            margin-bottom: 60px;
+        }
+        .highlight {
+            background-color: #ecf0f1;
+            padding: 12px 16px;
+            border-left: 6px solid #3498db;
+            margin-top: 10px;
+            font-size: 0.95em;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.95em;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Banking Complaints – Sentiment Insights Report</h1>
+
+    <div class="section">
+        <h2>Project Overview</h2>
+        <p>This report analyzes customer complaints submitted to banks throughout 2023. The dataset includes over <strong>7,000 complaints</strong> across various banking products, with metadata such as complaint description, product type, date received, and customer location.</p>
+    </div>
+
+    <div class="section">
+        <h2>Objective</h2>
+        <p>To extract actionable insights from customer feedback using Natural Language Processing (NLP), sentiment analysis, and classification models. The goal is to help stakeholders understand pain points, regional trends, and product-specific issues.</p>
+    </div>
+
+    <div class="section">
+        <h2>Data Preparation</h2>
+        <ul>
+            <li>Filled missing values in <code>State</code> and <code>ZIP</code> to preserve geographic data.</li>
+            <li>Cleaned complaint text: lowercased, removed punctuation/numbers, stopwords, and applied lemmatization.</li>
+            <li>Converted text into TF-IDF features for modeling.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Modeling</h2>
+        <p>Two models were trained to predict the banking product based on complaint text:</p>
+        <ul>
+            <li><strong>Naive Bayes</strong>: Simpler model, accuracy ~56%</li>
+            <li><strong>Logistic Regression</strong>: More robust, accuracy ~70%, handles class imbalance better</li>
+        </ul>
+    </div>
+
+    <div class="section">
+      <h2>Sentiment Analysis with VADER</h2>
+      <p>
+        Applied sentiment analysis using <strong>VADER (Valence Aware Dictionary and sEntiment Reasoner)</strong>, 
+        a rule-based model designed for short, informal text. It’s particularly effective for analyzing customer complaints 
+        because it interprets:
+      </p>
+      <ul>
+        <li>Slang and informal language</li>
+        <li>Emoticons and punctuation emphasis</li>
+        <li>Acronyms and negations (e.g., “not good”)</li>
+      </ul>
+      <p>
+        The analysis was performed on the <code>complaint_description</code> column, where each entry was classified into one of three sentiment categories 
+        based on its <strong>compound score</strong>:
+      </p>
+      <ul>
+        <li><strong>Positive</strong>: score ≥ 0.05 — indicates the complaint contains overall positive language or praise</li>
+        <li><strong>Negative</strong>: score ≤ -0.05 — reflects dissatisfaction, frustration, or criticism</li>
+        <li><strong>Neutral</strong>: between -0.05 and 0.05 — typically factual, procedural, or emotionally flat language</li>
+      </ul>
+      <p>
+        Neutral complaints often describe a situation without expressing clear approval or disapproval — for example: 
+        <em>“I submitted a request and haven’t heard back”</em> or <em>“My account was closed without notice.”</em> 
+        These statements convey concern but lack strong emotional tone.
+      </p>
+      <p>
+        This classification helps quantify customer sentiment and identify which banking products or regions are associated 
+        with more emotionally charged feedback.
+      </p>
+    </div>
+
+    <div class="section">
+        <h2>Visual Insights</h2>
+
+        <h3>1. Sentiment Distribution by Product</h3>
+        <img src="sentiment_stacked_bar.png" alt="Sentiment Distribution by Product">
+        <div class="highlight">Shows how sentiment varies across banking products.</div>
+
+        <h3>2. Total Negative Complaints by Product</h3>
+        <img src="negative_count_bar.png" alt="Negative Complaints by Product">
+        <div class="highlight">Highlights which products receive the most negative feedback.</div>
+
+        <h3>3. Products with High Negative Sentiment</h3>
+        <img src="high_negative_sentiment.png" alt="High Negative Sentiment Products">
+        <div class="highlight">Focuses on products with over 400 negative complaints.</div>
+
+        <h3>4. Products with More Positive Than Negative Complaints</h3>
+        <img src="positive_vs_negative_complaints.png" alt="Positive vs Negative Comparison">
+        <div class="highlight">Identifies products with stronger positive sentiment.</div>
+
+        <h3>5. Low Volume but High Negativity</h3>
+        <img src="low_volume_high_negative_sentiment.png" alt="Low Volume High Negativity">
+        <div class="highlight">Flags niche products with concerning sentiment ratios.</div>
+
+        <h3>6. Sentiment Breakdown by Product (Grouped Bars)</h3>
+        <img src="sentiment_breakdown_by_product.png" alt="Grouped Sentiment Breakdown">
+        <div class="highlight">Compares sentiment categories side-by-side for each product.</div>
+
+        <h3>7. Complaint Sentiment Distribution by State</h3>
+        <img src="sentiment_by_state_stacked_bar.png" alt="Sentiment by State">
+        <div class="highlight">Reveals geographic concentration of negative and positive feedback.</div>
+    </div>
+
+    <div class="section">
+        <h2>Business Insights</h2>
+        <ul>
+            <li>Products like <strong>Checking accounts</strong> and <strong>Credit cards</strong> show high complaint volumes and negative sentiment.</li>
+            <li>Some products (e.g. <strong>Student loans</strong>) have more positive than negative feedback.</li>
+            <li>Certain states show disproportionate negativity, which may indicate regional service issues.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>What I Learned</h2>
+        <ul>
+            <li>How to clean and preprocess text data for NLP</li>
+            <li>How to apply TF-IDF and train classification models</li>
+            <li>How to use VADER for sentiment analysis</li>
+            <li>How to visualize and communicate insights effectively</li>
+        </ul>
+    </div>
+
+    <div class="section">
+      <h2>GitHub Summary</h2>
+      <p>
+        This project is available on 
+        <a href="https://github.com/cwattsnogueira/nlp-banking-insights" target="_blank">
+          GitHub
+        </a> and includes:
+      </p>
+      <ul>
+        <li>Data cleaning and preprocessing scripts</li>
+        <li>Model training and evaluation</li>
+        <li>Sentiment analysis pipeline using VADER</li>
+        <li>Insightful visualizations and business recommendations</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Author</h2>
+      <p>
+        <strong>Carllos Watts-Nogueira</strong> focused on transforming raw data into actionable business insights. 
+        data scientist | sentiment analysis| data visualization | stakeholder-driven reporting.
+      </p>
+      <ul>
+        <li>
+          GitHub: 
+          <a href="https://github.com/cwattsnogueira" target="_blank" rel="noopener noreferrer">
+            github.com/cwattsnogueira
+          </a>
+        </li>
+        <li>
+          LinkedIn: 
+          <a href="https://www.linkedin.com/in/carlloswattsnogueira" target="_blank" rel="noopener noreferrer">
+            linkedin.com/in/carlloswattsnogueira
+          </a>
+        </li>
+      </ul>
+    </div>
+
+</body>
+</html>
